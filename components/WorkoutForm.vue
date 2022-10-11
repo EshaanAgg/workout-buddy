@@ -53,8 +53,8 @@ const handleSubmit = async () => {
 
     <button @click="handleSubmit">Add Workout</button>
 
-    <div v-if="error || globalError.show" class="error">
-      {{ error }} {{ globalError.message }}
+    <div v-if="error || globalError?.show" class="error">
+      {{ error }} {{ globalError?.message }}
     </div>
   </form>
 </template>

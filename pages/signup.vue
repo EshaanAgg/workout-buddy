@@ -25,7 +25,7 @@
       id="password"
       v-model="password"
     />
-    <div v-if="error.show" class="error">{{ error.message }}</div>
+    <div v-if="error?.show" class="error">{{ error?.message }}</div>
     <button v-if="!isPending" :disabled="!email || !password || !name">
       Sign Up
     </button>
@@ -56,6 +56,6 @@ const handleSubmit = async () => {
     name: name.value,
   });
   isPending.value = false;
-  navigateTo("/workouts");
+  if (!globalStore.error) await navigateTo("/workouts");
 };
 </script>

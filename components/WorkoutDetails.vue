@@ -42,6 +42,6 @@ const handleDelete = async (workout) => {
     <span class="material-symbols-outlined" @click="handleDelete(props.workout)"
       >delete</span
     >
-    <div class="error" v-if="error.show">{{ error.message }}</div>
+    <div class="error" v-if="error?.show">{{ error?.message }}</div>
   </div>
 </template>

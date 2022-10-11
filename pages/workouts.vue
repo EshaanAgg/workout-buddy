@@ -4,7 +4,7 @@ import { useGlobalStore } from "@/stores/global";
 
 const workoutStore = useWorkoutStore();
 const globalStore = useGlobalStore();
-
+await workoutStore.fetchWorkouts();
 const workouts = computed(() => workoutStore.workouts);
 const error = computed(() => globalStore.error);
 await workoutStore.fetchWorkouts();
@@ -13,7 +13,7 @@ await workoutStore.fetchWorkouts();
 
 <template>
   <div class="home">
-    <div v-if="error.show" class="error">{{ error.message }}</div>
+    <div v-if="error?.show" class="error">{{ error?.message }}</div>
     <div v-else-if="workouts">
       <div class="workouts">
         <div v-for="workout in workouts" :key="workout[$id]">
