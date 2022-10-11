@@ -5,6 +5,7 @@ import api from "@/api";
 export const useAccountStore = defineStore("account", {
   state: () => ({
     account: null,
+    session: null,
   }),
   actions: {
     signup: async function ({ email, password, name }) {

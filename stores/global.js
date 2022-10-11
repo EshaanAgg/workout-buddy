@@ -11,7 +11,7 @@ export const useGlobalStore = defineStore("global", {
     - show : Boolean : To control the visibility of the error
     - message : The error message
   */
-    error: {},
+    error: null,
   }),
   actions: {
     setError: function (error) {

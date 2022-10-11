@@ -16,11 +16,11 @@ await workoutStore.fetchWorkouts();
     <div v-if="error.show" class="error">{{ error.message }}</div>
     <div v-else-if="workouts">
       <div class="workouts">
+        <div v-for="workout in workouts" :key="workout[$id]">
         <WorkoutDetails
-          v-for="workout in workouts"
-          :key="workout[$id]"
           :workout="workout"
         />
+        </div>
       </div>
     </div>
     <div v-else>No workouts added.</div>

@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleSubmit" class="signup">
+  <form @submit.prevent="handleSubmit">
     <h3>Sign Up</h3>
     <label for="name"> Display Name </label>
     <input
@@ -56,7 +56,6 @@ const handleSubmit = async () => {
     name: name.value,
   });
   isPending.value = false;
-  await navigateTo("/workouts");
+  navigateTo("/workouts");
 };
-
 </script>

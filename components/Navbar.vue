@@ -17,16 +17,11 @@ const handleLogout = async () => {
       <h1><NuxtLink to="/">Workout Buddy</NuxtLink></h1>
       <div class="links">
         <div v-if="user">
-          <NuxtLink to="/workouts">View my Workouts</NuxtLink>
           <button @click="handleLogout">Logout</button>
         </div>
         <div v-else>
-          <NuxtLink to="/signup">
-            <div class="btn">Sign Up</div>
-          </NuxtLink>
-          <NuxtLink to="/login">
-            <div class="btn">Login</div>
-          </NuxtLink>
+          <NuxtLink class="btn" to="/signup">Sign Up</NuxtLink>
+          <NuxtLink class="btn" to="/login">Login</NuxtLink>
         </div>
       </div>
     </nav>

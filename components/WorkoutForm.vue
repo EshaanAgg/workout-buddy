@@ -12,7 +12,7 @@ const load = ref(10);
 const reps = ref(10);
 const link = ref("");
 
-let error = computed(() => {
+const error = computed(() => {
   var messages = [];
   if (title === "") messages.push("The title can't be blank. ");
   if (load < 0) messages.push("The load can't be negative. ");
