@@ -1,8 +1,8 @@
-# 🔖 Assignment Hero
+# 🔖 Workout Buddy
 
-Made with Nuxt 3 and Appwrite
+A simple add to store your workout routines. Made with Nuxt 3 and Appwrite.
 
-If you simply want to try out the App, go ahead and check out the demo at https://appwrite-todo-with-vue.vercel.app/
+If you simply want to try out the app, go ahead and check out the demo at (ADD LINK)
 
 ## 🎬 Getting Started
 
@@ -17,25 +17,37 @@ We need to make a few configuration changes to your Appwrite server.
 1. Add a new Web App in Appwrite and enter the endpoint of your website (`localhost, <project-name>.vercel.app etc`)
    ![Appwrite Console](https://user-images.githubusercontent.com/31401437/155891052-09bb17e4-a30c-4c73-8c9f-b1cc0b44c596.png)
 
-2. Create a new collection with the following properties
+2. Create a new database, and then a new collection with the following properties.
 
 - **Attributes**
   Add the following attributes to the collection.
   > Make sure that your Attribute ID exactly matches the key in the images
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/31401437/155890880-d4e46483-e2cc-4d06-b527-7c6d9f8a152f.png" alt="Content Attribute" width="400">
+<img src="./assets/pics/title.png" alt="title Attribute" width="400">
 </p>
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/31401437/155890899-e8ac0ef9-a0e2-4bde-add8-caee55a02e6b.png" alt="IsComplete Attribute" width="400">
+<img src="./assets/pics/load.png" alt="load Attribute" width="400">
+</p>
+
+<p align="center">
+<img src="./assets/pics/reps.png" alt="reps Attribute" width="400">
+</p>
+
+<p align="center">
+<img src="./assets/pics/link.png" alt="link Attribute" width="400">
+</p>
+
+<p align="center">
+<img src="./assets/pics/createdAt.png" alt="createdAt Attribute" width="400">
 </p>
 
 - **Permissions**
   Add the following permissions to your collection. These permissions ensure that only registered users can access the collection.
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/31401437/155890959-c9e6bdd6-b6b6-4ae5-8680-3c6aeea716ef.png" alt="Collection Permissions" width="400">
+<img src="./assets/pics/settings.png" alt="Collection Permissions" width="400">
 </p>
 
 ### 🚀 Deploy the Front End
@@ -84,15 +96,3 @@ Now run the following commands and you should be good to go 💪🏼
 $ npm install
 $ npm run dev
 ```
-
-## 🤕 Support
-
-If you get stuck anywhere, hop onto one of our [support channels in discord](https://appwrite.io/discord) and we'd be delighted to help you out 🤝
-
-## 😧 Help Wanted
-
-Our access credentials were recently compromised and someone tried to ruin these demos. They decided to leave behind 15 easter eggs 🥚 for you to discover. If you find them, submit a PR cleaning up that section of the code (One PR per person across all the repos). You can track the number of claimed Easter Eggs using the badge at the top.
-
-The first 15 people to get their PRs merged will receive some Appwrite Swags 🤩 . Just head over to our [Discord channel](https://appwrite.io/discord) and share your PR link with us.
-
-> _UPDATE **17-11-2021**:_ The easter egg contest is now closed.
