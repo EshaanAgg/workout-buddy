@@ -1,3 +1,3 @@
 <template>
-    Hi
+  <div>Landing Page</div>
 </template>

@@ -2,16 +2,6 @@
 export default defineNuxtConfig({
   css: ["@/assets/css/styles.css"],
   buildModules: ["@pinia/nuxt"],
-  build: {
-    postcss: {
-      postcssOptions: {
-        plugins: {
-          tailwindcss: {},
-          autoprefixer: {},
-        },
-      },
-    },
-  },
   runtimeConfig: {
     public: {
       endpoint: process.env.NUXT_APP_ENDPOINT,

@@ -21,8 +21,8 @@ const props = defineProps({
   },
 });
 
-const handleDelete = (workout) => {
-  workoutStore.deleteWorkout(workout["$id"]);
+const handleDelete = async (workout) => {
+  await workoutStore.deleteWorkout(workout["$id"]);
 };
 </script>
 

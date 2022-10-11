@@ -1,4 +1,4 @@
-<script>
+<script setup>
 import { useWorkoutStore } from "@/stores/workout";
 import { useGlobalStore } from "@/stores/global";
 
@@ -21,9 +21,7 @@ let error = computed(() => {
   return messages;
 });
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-
+const handleSubmit = async () => {
   if (error.length === 0) {
     const workout = {
       title: title.value,
@@ -32,13 +30,13 @@ const handleSubmit = (e) => {
       link: link.value,
       createdAt: Date.now(),
     };
-    workoutStore.addWorkout(workout);
+    await workoutStore.addWorkout(workout);
   }
 };
 </script>
 
 <template>
-  <form className="create" @submit="handleSubmit">
+  <form className="create" @submit.prevent="handleSubmit">
     <h3>Add a New Workout</h3>
 
     <label>Excersize Title:</label>

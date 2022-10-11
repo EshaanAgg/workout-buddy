@@ -1,6 +1,6 @@
 # 🔖 Workout Buddy
 
-A simple add to store your workout routines. Made with Nuxt 3 and Appwrite.
+A simple app to store your workout routines. Made with Nuxt 3 and Appwrite.
 
 If you simply want to try out the app, go ahead and check out the demo at (ADD LINK)
 
@@ -78,8 +78,8 @@ Use the following buttons to deploy to your favourite hosting provider in one cl
 Follow these instructions to run the demo app locally
 
 ```sh
-$ git clone https://github.com/appwrite/todo-with-vue
-$ cd todo-with-vue
+$ git clone https://github.com/EshaanAgg/workout-buddy
+$ cd workout-buddy
 ```
 
 Run the following command to generate your `.env` vars

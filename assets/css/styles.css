@@ -1,11 +1,7 @@
 /* Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap");
 /* Layout */
+
 :root {
   --primary: #1aac83;
   --error: #e7195a;
@@ -30,7 +26,7 @@ header a {
   color: #333;
   text-decoration: none;
 }
-.pages{
+.pages {
   max-width: 1400px;
   padding: 20px;
   margin: 0 auto;
@@ -48,7 +44,7 @@ header a {
   margin: 20px auto;
   padding: 20px;
   position: relative;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 }
 .workout-details h4 {
   margin: 0 0 10px 0;
@@ -72,7 +68,8 @@ header a {
 }
 
 /* New Workout Form */
-label, input {
+label,
+input {
   display: block;
 }
 input {
@@ -105,27 +102,9 @@ input.error {
   border: 1px solid var(--error);
 }
 
-/* Navbar */
-nav {
-  display: flex;
-  align-items: center;
-}
-nav a, nav button {
-  margin-left: 10px;
-}
-nav button {
-  background: #fff;
-  color: var(--primary);
-  border: 2px solid var(--primary);
-  padding: 6px 10px;
-  border-radius: 4px;
-  font-family: "Poppins";
-  cursor: pointer;
-  font-size: 1em;
-}
-
 /* Auth Forms */
-form.signup, form.login {
+form.signup,
+form.login {
   max-width: 400px;
   margin: 40px auto;
   padding: 20px;
