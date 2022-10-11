@@ -1,4 +1,4 @@
-import { Role } from "appwrite";
+import { Permission, Role } from "appwrite";
 import { defineStore, acceptHMRUpdate } from "pinia";
 import { useGlobalStore } from "./global";
 import { useAccountStore } from "./account";
@@ -14,9 +14,14 @@ export const useWorkoutStore = defineStore("workout", {
     workouts: [],
   }),
   actions: {
-    async getWorkout(documentId) {
+    async getWorkout(documentID) {
       try {
-        const data = await api.getDocument(documentId);
+        const Server = useRuntimeConfig().public;
+        const data = await api.getDocument(
+          Server.databaseID,
+          Server.workoutCollectionID,
+          documentID
+        );
         return data;
       } catch (e) {
         console.log("Could not fetch document ", e);
@@ -30,8 +35,10 @@ export const useWorkoutStore = defineStore("workout", {
     async fetchWorkouts() {
       try {
         const Server = useRuntimeConfig().public;
-
-        const data = await api.listDocuments(Server.workoutCollectionID);
+        const data = await api.listDocuments(
+          Server.databaseID,
+          Server.workoutCollectionID
+        );
         this.workouts = data.documents;
       } catch (e) {
         console.log("Could not fetch documents ", e);
@@ -47,13 +54,16 @@ export const useWorkoutStore = defineStore("workout", {
         const accountStore = useAccountStore();
         const Server = useRuntimeConfig().public;
 
-        const userId = accountStore.account["$id"];
-        data.userId = userId;
+        const userID = accountStore.account["$id"];
+
         const response = await api.createDocument(
+          Server.databaseID,
           Server.workoutCollectionID,
           data,
-          Role.any(),
-          [`user:${userId}`]
+          [
+            Permission.read(Role.user(userID)),
+            Permission.write(Role.user(userID)),
+          ]
         );
         // Only the particular user has read and write access to the same
         this.workouts.push(response);
@@ -63,18 +73,21 @@ export const useWorkoutStore = defineStore("workout", {
         const globalStore = useGlobalStore();
         globalStore.setError({
           show: true,
-          message: "Failed to this workout group",
+          message: "Failed to create this workout.",
         });
       }
     },
   },
-  async deleteWorkout(documentId) {
+  async deleteWorkout(documentID) {
     try {
       const Server = useRuntimeConfig().public;
-
-      await api.deleteDocument(Server.workoutCollectionID, documentId);
+      await api.deleteDocument(
+        Server.databaseID,
+        Server.workoutCollectionID,
+        documentID
+      );
       this.workouts = this.workouts.filter(
-        (document) => document["$id"] !== documentId
+        (document) => document["$id"] !== documentID
       );
     } catch (e) {
       console.log("Could not delete document", e);
@@ -86,19 +99,21 @@ export const useWorkoutStore = defineStore("workout", {
       });
     }
   },
-  async updateWorkout({ documentId, data }) {
+  async updateWorkout({ documentID, data }) {
     try {
       const accountStore = useAccountStore();
       const Server = useRuntimeConfig().public;
+      const userID = accountStore.account["$id"];
 
-      const userId = accountStore.account["$id"];
-      data.userId = userId;
       const response = await api.updateDocument(
+        Server.databaseID,
         Server.workoutCollectionID,
-        documentId,
+        documentID,
         data,
-        Role.any(),
-        [`user:${userId}`]
+        [
+          Permission.read(Role.user(userID)),
+          Permission.write(Role.user(userID)),
+        ]
       );
       const index = this.workouts.findIndex(
         (doc) => doc["$id"] === response["$id"]
@@ -107,7 +122,6 @@ export const useWorkoutStore = defineStore("workout", {
     } catch (e) {
       console.log("Could not update document", e);
       const globalStore = useGlobalStore();
-
       globalStore.setError({
         show: true,
         message: "Failed to updated Workout",
