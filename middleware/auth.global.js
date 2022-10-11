@@ -3,7 +3,7 @@ import { useGlobalStore } from "@/stores/global";
 
 export default defineNuxtRouteMiddleware((to, from) => {
   let accountStore = useAccountStore();
-  let account = accountStore.account;
+  let account = computed(() => accountStore.account);
 
   if (to.path.includes("/workouts")) {
     if (!account) return navigateTo("/login");

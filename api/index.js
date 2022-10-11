@@ -43,38 +43,48 @@ const api = {
 
   /*
   Creates a document and stores it in the backend
-  - Requires a collectionId to identify where to save the document
+  - Requires a collectionID to identify where to save the document
   - Auto generates an uniqie document id for the same
   - Requires:
     - data : The fields of the document
     - read : Users with read permissions
     - write : Users with write (updating and deleting permissions)
   */
-  createDocument: (collectionId, data, read, write) => {
+  createDocument: (databaseID, collectionID, data, permissions) => {
     return api
       .provider()
-      .database.createDocument(collectionId, "unique()", data, read, write);
+      .database.createDocument(databaseID, collectionID, data, permissions);
   },
 
   // Get all documents stored in a collection
-  listDocuments: (collectionId) => {
-    return api.provider().database.listDocuments(collectionId);
+  listDocuments: (databaseID, collectionID) => {
+    return api.provider().database.listDocuments(databaseID, collectionID);
   },
 
-  listDocument: (documentId) => {
-    return api.provider().database.getDocument(documentId);
-  },
-  // Update a given document with the relevant data
-  // Has all the same arguments as createDocument, except for an additional identifier documentId to point to which document to update
-  updateDocument: (collectionId, documentId, data, read, write) => {
+  getDocument: (databaseID, collectionID, documentID) => {
     return api
       .provider()
-      .database.updateDocument(collectionId, documentId, data, read, write);
+      .database.getDocument(databaseID, collectionID, documentID);
+  },
+  // Update a given document with the relevant data
+  // Has all the same arguments as createDocument, except for an additional identifier documentID to point to which document to update
+  updateDocument: (databaseID, collectionID, documentID, data, permissions) => {
+    return api
+      .provider()
+      .database.updateDocument(
+        databaseID,
+        collectionID,
+        documentID,
+        data,
+        permissions
+      );
   },
 
   // Deletes the document with the given collection and document ids
-  deleteDocument: (collectionId, documentId) => {
-    return api.provider().database.deleteDocument(collectionId, documentId);
+  deleteDocument: (databaseID, collectionID, documentID) => {
+    return api
+      .provider()
+      .database.deleteDocument(databaseID, collectionID, documentID);
   },
 };
 

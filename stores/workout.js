@@ -9,8 +9,6 @@ All the actions in this store automatically fetch/add the the documents for the 
 Thus you can directly use these from the pages without worrying about the current user
 */
 
-const Server = useRuntimeConfig().public;
-
 export const useWorkoutStore = defineStore("workout", {
   state: () => ({
     workouts: [],
@@ -31,6 +29,8 @@ export const useWorkoutStore = defineStore("workout", {
     },
     async fetchWorkouts() {
       try {
+        const Server = useRuntimeConfig().public;
+
         const data = await api.listDocuments(Server.workoutCollectionID);
         this.workouts = data.documents;
       } catch (e) {
@@ -45,6 +45,7 @@ export const useWorkoutStore = defineStore("workout", {
     async addWorkout(data) {
       try {
         const accountStore = useAccountStore();
+        const Server = useRuntimeConfig().public;
 
         const userId = accountStore.account["$id"];
         data.userId = userId;
@@ -69,6 +70,8 @@ export const useWorkoutStore = defineStore("workout", {
   },
   async deleteWorkout(documentId) {
     try {
+      const Server = useRuntimeConfig().public;
+
       await api.deleteDocument(Server.workoutCollectionID, documentId);
       this.workouts = this.workouts.filter(
         (document) => document["$id"] !== documentId
@@ -86,6 +89,7 @@ export const useWorkoutStore = defineStore("workout", {
   async updateWorkout({ documentId, data }) {
     try {
       const accountStore = useAccountStore();
+      const Server = useRuntimeConfig().public;
 
       const userId = accountStore.account["$id"];
       data.userId = userId;
