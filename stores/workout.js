@@ -9,6 +9,8 @@ All the actions in this store automatically fetch/add the the documents for the 
 Thus you can directly use these from the pages without worrying about the current user
 */
 
+const Server = useRuntimeConfig().public;
+
 export const useWorkoutStore = defineStore("workout", {
   state: () => ({
     workouts: [],
