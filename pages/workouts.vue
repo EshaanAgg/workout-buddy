@@ -8,6 +8,7 @@ const globalStore = useGlobalStore();
 const workouts = computed(() => workoutStore.workouts);
 const error = computed(() => globalStore.error);
 await workoutStore.fetchWorkouts();
+
 </script>
 
 <template>

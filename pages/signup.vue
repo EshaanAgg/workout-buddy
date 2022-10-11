@@ -56,6 +56,7 @@ const handleSubmit = async () => {
     name: name.value,
   });
   isPending.value = false;
-  navigateTo("/workouts");
+  await navigateTo("/workouts");
 };
+
 </script>

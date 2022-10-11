@@ -44,6 +44,7 @@ const handleSubmit = async () => {
     password: password.value,
   });
   isPending.value = false;
-  navigateTo("/workouts");
+  await navigateTo("/workouts");
 };
+
 </script>

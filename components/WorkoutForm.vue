@@ -51,7 +51,7 @@ const handleSubmit = async () => {
     <label>Tutorial Link:</label>
     <input type="url" :value="link" :class="link === 0 ? 'error' : ''" />
 
-    <button>Add Workout</button>
+    <button @click="handleSubmit">Add Workout</button>
 
     <div v-if="error || globalError.show" class="error">
       {{ error }} {{ globalError.message }}
