@@ -1,48 +1,40 @@
 <script>
-export default defineNuxtComponent({
-  setup() {
-    const title = ref("");
-    const load = ref(10);
-    const reps = ref(10);
-    const link = ref("");
+import { useWorkoutStore } from "@/stores/workout";
+import { useGlobalStore } from "@/stores/global";
 
-    let error = computed(() => {
-      var messages = [];
-      if (title === "") messages.push("The title can't be blank. ");
-      if (load < 0) messages.push("The load can't be negative. ");
-      if (reps < 0) messages.push("The number of reps can't be negative. ");
-      if (link === "") messages.push("The tutorial link can't be blank. ");
-      return messages;
-    });
+const workoutStore = useWorkoutStore();
+const globalStore = useGlobalStore();
 
-    const getAccount = mapGetters(["getAccount"]);
-    const [addWorkout, fetchAccount] = [
-      ...mapActions(["addWorkout", "fetchAccount"]),
-    ];
+const globalError = computed(() => globalStore.error);
 
-    const handleSubmit = (e) => {
-      e.preventDefault();
+const title = ref("");
+const load = ref(10);
+const reps = ref(10);
+const link = ref("");
 
-      if (error.length === 0) {
-        if (!getAccount) fetchAccount();
-        const userID = getAccount[$id];
-        const workout = {
-          title: title.value,
-          load: load.value,
-          reps: reps.value,
-          link: link.value,
-          createdAt: Date.now(),
-        };
-        const read = [`user:${userID}`];
-        addWorkout({
-          workout,
-          read,
-          write: read,
-        });
-      }
-    };
-  },
+let error = computed(() => {
+  var messages = [];
+  if (title === "") messages.push("The title can't be blank. ");
+  if (load < 0) messages.push("The load can't be negative. ");
+  if (reps < 0) messages.push("The number of reps can't be negative. ");
+  if (link === "") messages.push("The tutorial link can't be blank. ");
+  return messages;
 });
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+
+  if (error.length === 0) {
+    const workout = {
+      title: title.value,
+      load: load.value,
+      reps: reps.value,
+      link: link.value,
+      createdAt: Date.now(),
+    };
+    workoutStore.addWorkout(workout);
+  }
+};
 </script>
 
 <template>
@@ -63,6 +55,8 @@ export default defineNuxtComponent({
 
     <button>Add Workout</button>
 
-    <div v-if="error" class="error">{{ error }}</div>
+    <div v-if="error || globalError.show" class="error">
+      {{ error }} {{ globalError.message }}
+    </div>
   </form>
 </template>
