@@ -18,18 +18,12 @@ const handleSubmit = async () => {
       load: load.value,
       reps: reps.value,
       link: link.value,
-      createdAt: getTimestamp(),
+      createdAt: new Date(Date.now()).toLocaleString(),
     };
     const workoutStore = useWorkoutStore();
     await workoutStore.addWorkout(workout);
 };
 
-function getTimestamp() {
-  var date = Date.now();
-	var currentDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+ date.getDate();
-	var currentTime = date.getHours()+":"+date.getMinutes()+":"+ date.getSeconds();
-	return currentDate + " " + currentTime;
-}
 </script>
 
 <template>
