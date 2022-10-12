@@ -7,21 +7,12 @@ const globalStore = useGlobalStore();
 const globalError = computed(() => globalStore.error);
 
 const title = ref("");
-const load = ref(10);
-const reps = ref(10);
+const load = ref(0);
+const reps = ref(0);
 const link = ref("");
 
-const error = computed(() => {
-  var messages = "";
-  if (title.value === "") messages += "The title can't be blank. \n";
-  if (load.value < 0) messages += "The load can't be negative. \n";
-  if (reps.value < 0) messages += "The number of reps can't be negative. \n";
-  if (link.value === "") messages += "The tutorial link can't be blank. \n";
-  return messages;
-});
-
 const handleSubmit = async () => {
-  if (error.length === 0) {
+  console.log("Function called");
     const workout = {
       title: title.value,
       load: load.value,
@@ -31,11 +22,10 @@ const handleSubmit = async () => {
     };
     const workoutStore = useWorkoutStore();
     await workoutStore.addWorkout(workout);
-  }
 };
 
 function getTimestamp() {
-  var date = new Date();
+  var date = Date.now();
 	var currentDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+ date.getDate();
 	var currentTime = date.getHours()+":"+date.getMinutes()+":"+ date.getSeconds();
 	return currentDate + " " + currentTime;
@@ -47,22 +37,21 @@ function getTimestamp() {
     <h3>Add a New Workout</h3>
 
     <label>Excersize Title:</label>
-    <input type="text" :value="title" :class="title === '' ? 'error' : ''" />
+    <input type="text" v-model.trim="title" :class="title === '' ? 'error' : ''" />
 
     <label>Load (in kg):</label>
-    <input type="number" :value="load" :class="load < 0 ? 'error' : ''" />
+    <input type="number" v-model="load" :class="load < 0 ? 'error' : ''" />
 
     <label>Reps:</label>
-    <input type="number" :value="reps" :class="reps < 0 ? 'error' : ''" />
+    <input type="number" v-model="reps" :class="reps < 0 ? 'error' : ''" />
 
     <label>Tutorial Link:</label>
-    <input type="url" :value="link" :class="link === 0 ? 'error' : ''" />
+    <input type="url" v-model.trim="link" :class="link === '' ? 'error' : ''" />
 
-    <button @click="handleSubmit" :disabled="!error || !globalError" >Add Workout</button>
+    <button>Add Workout</button>
 
-
-    <div v-if="globalError?.show || error" class="error">
-       {{ globalError?.message }} {{error}}
+    <div v-if="globalError?.show" class="error">
+       {{ globalError?.message }}
     </div>
   </form>
 </template>

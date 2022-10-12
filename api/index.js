@@ -53,7 +53,13 @@ const api = {
   createDocument: (databaseID, collectionID, data, permissions) => {
     return api
       .provider()
-      .database.createDocument(databaseID, collectionID, data, permissions);
+      .database.createDocument(
+        databaseID,
+        collectionID,
+        "unique()",
+        data,
+        permissions
+      );
   },
 
   // Get all documents stored in a collection

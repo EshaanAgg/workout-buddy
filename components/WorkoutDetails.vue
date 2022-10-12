@@ -3,7 +3,6 @@ import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import { useWorkoutStore } from "@/stores/workout";
 import { useGlobalStore } from "@/stores/global";
 
-const workoutStore = useWorkoutStore();
 const globalStore = useGlobalStore();
 
 const error = computed(() => globalStore.error);
@@ -22,8 +21,10 @@ const props = defineProps({
 });
 
 const handleDelete = async (workout) => {
-  await workoutStore.deleteWorkout(workout["$id"]);
-};
+  console.log("delete");
+  const workoutStore = useWorkoutStore();
+  workoutStore.deleteWorkout(workout["$id"]);
+}
 </script>
 
 <template>

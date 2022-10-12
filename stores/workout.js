@@ -71,7 +71,7 @@ export const useWorkoutStore = defineStore("workout", {
         const globalStore = useGlobalStore();
         globalStore.setError({
           show: true,
-          message: "Failed to create this workout.",
+          message: "Failed to create this workout." + e,
         });
       }
     },
