@@ -8,13 +8,12 @@ await workoutStore.fetchWorkouts();
 const workouts = computed(() => workoutStore.workouts);
 const error = computed(() => globalStore.error);
 await workoutStore.fetchWorkouts();
-
 </script>
 
 <template>
   <div class="home">
     <div v-if="error?.show" class="error">{{ error?.message }}</div>
-    <div v-else-if="workouts">
+    <div v-else-if="workouts.length!=0">
       <div class="workouts">
         <div v-for="workout in workouts" :key="workout[$id]">
         <WorkoutDetails

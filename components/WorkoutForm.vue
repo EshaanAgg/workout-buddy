@@ -2,7 +2,6 @@
 import { useWorkoutStore } from "@/stores/workout";
 import { useGlobalStore } from "@/stores/global";
 
-const workoutStore = useWorkoutStore();
 const globalStore = useGlobalStore();
 
 const globalError = computed(() => globalStore.error);
@@ -13,11 +12,11 @@ const reps = ref(10);
 const link = ref("");
 
 const error = computed(() => {
-  var messages = [];
-  if (title === "") messages.push("The title can't be blank. ");
-  if (load < 0) messages.push("The load can't be negative. ");
-  if (reps < 0) messages.push("The number of reps can't be negative. ");
-  if (link === "") messages.push("The tutorial link can't be blank. ");
+  var messages = "";
+  if (title.value === "") messages += "The title can't be blank. \n";
+  if (load.value < 0) messages += "The load can't be negative. \n";
+  if (reps.value < 0) messages += "The number of reps can't be negative. \n";
+  if (link.value === "") messages += "The tutorial link can't be blank. \n";
   return messages;
 });
 
@@ -28,11 +27,19 @@ const handleSubmit = async () => {
       load: load.value,
       reps: reps.value,
       link: link.value,
-      createdAt: Date.now(),
+      createdAt: getTimestamp(),
     };
+    const workoutStore = useWorkoutStore();
     await workoutStore.addWorkout(workout);
   }
 };
+
+function getTimestamp() {
+  var date = new Date();
+	var currentDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+ date.getDate();
+	var currentTime = date.getHours()+":"+date.getMinutes()+":"+ date.getSeconds();
+	return currentDate + " " + currentTime;
+}
 </script>
 
 <template>
@@ -51,10 +58,11 @@ const handleSubmit = async () => {
     <label>Tutorial Link:</label>
     <input type="url" :value="link" :class="link === 0 ? 'error' : ''" />
 
-    <button @click="handleSubmit">Add Workout</button>
+    <button @click="handleSubmit" :disabled="!error || !globalError" >Add Workout</button>
 
-    <div v-if="error || globalError?.show" class="error">
-      {{ error }} {{ globalError?.message }}
+
+    <div v-if="globalError?.show || error" class="error">
+       {{ globalError?.message }} {{error}}
     </div>
   </form>
 </template>

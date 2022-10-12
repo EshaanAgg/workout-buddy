@@ -53,7 +53,6 @@ export const useWorkoutStore = defineStore("workout", {
       try {
         const accountStore = useAccountStore();
         const Server = useRuntimeConfig().public;
-
         const userID = accountStore.account["$id"];
 
         const response = await api.createDocument(
@@ -65,7 +64,6 @@ export const useWorkoutStore = defineStore("workout", {
             Permission.write(Role.user(userID)),
           ]
         );
-        // Only the particular user has read and write access to the same
         this.workouts.push(response);
         return response;
       } catch (e) {
