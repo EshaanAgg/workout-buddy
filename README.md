@@ -107,13 +107,13 @@ Here is the collection schema for the Appwrite Collection, so that you can verif
 
 ```
 {
-    "$id": "634503105a8d544ab6e9",
+    "$id": "MY_COLLECTION_ID",
     "$createdAt": "2022-10-11T05:45:52.371+00:00",
     "$updatedAt": "2022-10-13T08:41:12.299+00:00",
     "$permissions": [
         "create(\"users\")"
     ],
-    "databaseId": "MY_COLLECTION_ID",
+    "databaseId": "MY_DATABASE_ID",
     "name": "workouts",
     "enabled": true,
     "documentSecurity": true,
