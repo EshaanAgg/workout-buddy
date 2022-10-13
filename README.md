@@ -5,15 +5,15 @@ A simple app to store your workout routines. Made with Nuxt 3 and Appwrite.
 ## Screenshots of the App
 
 <p align="center">
-<img src="./assets/pics/1.png" alt="Signup Screen" width="400">
+<img src="./assets/pics/1.png" alt="Signup Screen">
 </p>
 
 <p align="center">
-<img src="./assets/pics/2.png" alt="Login Screen" width="400">
+<img src="./assets/pics/2.png" alt="Login Screen">
 </p>
 
 <p align="center">
-<img src="./assets/pics/3.png" alt="Workouts Screen" width="400">
+<img src="./assets/pics/3.png" alt="Workouts Screen">
 </p>
 
 ## 🎬 Getting Started
