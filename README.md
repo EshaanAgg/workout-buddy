@@ -100,3 +100,72 @@ Now run the following commands and you should be good to go 💪🏼
 $ npm install
 $ npm run dev
 ```
+
+### Collection Schema
+
+Here is the collection schema for the Appwrite Collection, so that you can verify that your database and collection are setup properly!
+
+```
+{
+    "$id": "634503105a8d544ab6e9",
+    "$createdAt": "2022-10-11T05:45:52.371+00:00",
+    "$updatedAt": "2022-10-13T08:41:12.299+00:00",
+    "$permissions": [
+        "create(\"users\")"
+    ],
+    "databaseId": "MY_COLLECTION_ID",
+    "name": "workouts",
+    "enabled": true,
+    "documentSecurity": true,
+    "attributes": [
+        {
+            "key": "title",
+            "type": "string",
+            "status": "available",
+            "required": true,
+            "array": false,
+            "size": 255,
+            "default": null
+        },
+        {
+            "key": "load",
+            "type": "integer",
+            "status": "available",
+            "required": true,
+            "array": false,
+            "min": 0,
+            "max": 1000,
+            "default": null
+        },
+        {
+            "key": "reps",
+            "type": "integer",
+            "status": "available",
+            "required": false,
+            "array": false,
+            "min": 0,
+            "max": 1000,
+            "default": null
+        },
+        {
+            "key": "link",
+            "type": "string",
+            "status": "available",
+            "required": true,
+            "array": false,
+            "format": "url",
+            "default": null
+        },
+        {
+            "key": "createdAt",
+            "type": "datetime",
+            "status": "available",
+            "required": true,
+            "array": false,
+            "format": "",
+            "default": null
+        }
+    ],
+    "indexes": []
+}
+```
