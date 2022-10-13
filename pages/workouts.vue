@@ -6,7 +6,7 @@ const workouts = computed(() => workoutStore.workouts);
 workoutStore.fetchWorkouts();
 </script>
 
-<template>
+<template> 
   <div class="home">
     <div v-if="workouts.length!=0">
       <div class="workouts">

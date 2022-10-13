@@ -75,56 +75,56 @@ export const useWorkoutStore = defineStore("workout", {
         });
       }
     },
-  },
-  async deleteWorkout(documentID) {
-    try {
-      const Server = useRuntimeConfig().public;
-      await api.deleteDocument(
-        Server.databaseID,
-        Server.workoutCollectionID,
-        documentID
-      );
-      this.workouts = this.workouts.filter(
-        (document) => document["$id"] !== documentID
-      );
-    } catch (e) {
-      console.log("Could not delete document", e);
-      const globalStore = useGlobalStore();
+    async deleteWorkout(documentID) {
+      try {
+        const Server = useRuntimeConfig().public;
+        await api.deleteDocument(
+          Server.databaseID,
+          Server.workoutCollectionID,
+          documentID
+        );
+        this.workouts = this.workouts.filter(
+          (document) => document["$id"] !== documentID
+        );
+      } catch (e) {
+        console.log("Could not delete document", e);
+        const globalStore = useGlobalStore();
 
-      globalStore.setError({
-        show: true,
-        message: "Failed to delete Workout",
-      });
-    }
-  },
-  async updateWorkout({ documentID, data }) {
-    try {
-      const accountStore = useAccountStore();
-      const Server = useRuntimeConfig().public;
-      const userID = accountStore.account["$id"];
+        globalStore.setError({
+          show: true,
+          message: "Failed to delete Workout",
+        });
+      }
+    },
+    async updateWorkout({ documentID, data }) {
+      try {
+        const accountStore = useAccountStore();
+        const Server = useRuntimeConfig().public;
+        const userID = accountStore.account["$id"];
 
-      const response = await api.updateDocument(
-        Server.databaseID,
-        Server.workoutCollectionID,
-        documentID,
-        data,
-        [
-          Permission.read(Role.user(userID)),
-          Permission.write(Role.user(userID)),
-        ]
-      );
-      const index = this.workouts.findIndex(
-        (doc) => doc["$id"] === response["$id"]
-      );
-      if (index !== -1) this.workouts.splice(index, 1, response);
-    } catch (e) {
-      console.log("Could not update document", e);
-      const globalStore = useGlobalStore();
-      globalStore.setError({
-        show: true,
-        message: "Failed to updated Workout",
-      });
-    }
+        const response = await api.updateDocument(
+          Server.databaseID,
+          Server.workoutCollectionID,
+          documentID,
+          data,
+          [
+            Permission.read(Role.user(userID)),
+            Permission.write(Role.user(userID)),
+          ]
+        );
+        const index = this.workouts.findIndex(
+          (doc) => doc["$id"] === response["$id"]
+        );
+        if (index !== -1) this.workouts.splice(index, 1, response);
+      } catch (e) {
+        console.log("Could not update document", e);
+        const globalStore = useGlobalStore();
+        globalStore.setError({
+          show: true,
+          message: "Failed to updated Workout",
+        });
+      }
+    },
   },
 });
 

@@ -2,7 +2,7 @@
 
 A simple app to store your workout routines. Made with Nuxt 3 and Appwrite.
 
-If you simply want to try out the app, go ahead and check out the demo at (ADD LINK)
+## Screenshots of the App
 
 ## 🎬 Getting Started
 

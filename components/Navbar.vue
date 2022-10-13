@@ -50,8 +50,19 @@ nav .links a,
 button {
   margin-left: 16px;
   font-size: 14px;
+  background-color: #4c96af;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  border-radius: 12px;
 }
 nav img {
   max-height: 60px;
+}
+a {
+  text-decoration: none;
+  color:black;  
 }
 </style>

@@ -1,11 +1,7 @@
 <script setup>
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import { useWorkoutStore } from "@/stores/workout";
-import { useGlobalStore } from "@/stores/global";
 
-const globalStore = useGlobalStore();
-
-const error = computed(() => globalStore.error);
 const props = defineProps({
   workout: {
     type: Object,
@@ -25,6 +21,15 @@ const handleDelete = async (workout) => {
   const workoutStore = useWorkoutStore();
   workoutStore.deleteWorkout(workout["$id"]);
 }
+
+useHead({
+  link: [
+    {
+      rel: 'stylesheet',
+      href: 'https://fonts.googleapis.com/icon?family=Material+Icons'
+    },
+  ]
+})
 </script>
 
 <template>
@@ -40,9 +45,8 @@ const handleDelete = async (workout) => {
         })
       }}
     </p>
-    <span class="material-symbols-outlined" @click="handleDelete(props.workout)"
+    <span class="material-icons" @click="handleDelete(props.workout)"
       >delete</span
     >
-    <div class="error" v-if="error?.show">{{ error?.message }}</div>
   </div>
 </template>

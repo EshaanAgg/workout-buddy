@@ -3,7 +3,6 @@ import { useWorkoutStore } from "@/stores/workout";
 import { useGlobalStore } from "@/stores/global";
 
 const globalStore = useGlobalStore();
-
 const globalError = computed(() => globalStore.error);
 
 const title = ref("");
@@ -12,18 +11,25 @@ const reps = ref(0);
 const link = ref("");
 
 const handleSubmit = async () => {
+  globalStore.error = null;
   console.log("Function called");
     const workout = {
       title: title.value,
       load: load.value,
       reps: reps.value,
       link: link.value,
-      createdAt: new Date(Date.now()).toLocaleString(),
+      createdAt: getTimestamp(),
     };
     const workoutStore = useWorkoutStore();
     await workoutStore.addWorkout(workout);
 };
 
+function getTimestamp() {
+  var date = new Date(Date.now());
+	var currentDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+ date.getDate();
+	var currentTime = date.getHours()+":"+date.getMinutes()+":"+ date.getSeconds();
+	return currentDate + " " + currentTime;
+}
 </script>
 
 <template>

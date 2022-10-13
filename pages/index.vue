@@ -1,3 +1,6 @@
 <template>
-  <div>Landing Page</div>
 </template>
+
+<script setup>
+await navigateTo("/workouts");
+</script>
