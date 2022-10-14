@@ -10,7 +10,6 @@ const props = defineProps({
       title: "Test Workout",
       load: 10,
       reps: 10,
-      createdAt: Date.now(),
       link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     }),
   },
@@ -40,7 +39,7 @@ useHead({
     <p>Watch tutorial <a :href="props.workout.link">here</a></p>
     <p>
       {{
-        formatDistanceToNow(new Date(props.workout.createdAt), {
+        formatDistanceToNow(new Date(props.workout["$createdAt"]), {
           addSuffix: true,
         })
       }}

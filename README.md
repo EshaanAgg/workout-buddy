@@ -2,7 +2,7 @@
 
 A simple app to store your workout routines. Made with Nuxt 3 and Appwrite.
 
-## Screenshots of the App
+## 🔖 Screenshots of the App
 
 <p align="center">
 <img src="./assets/pics/1.png" alt="Signup Screen">
@@ -51,10 +51,6 @@ We need to make a few configuration changes to your Appwrite server.
 <img src="./assets/pics/link.png" alt="link Attribute" width="400">
 </p>
 
-<p align="center">
-<img src="./assets/pics/createdAt.png" alt="createdAt Attribute" width="400">
-</p>
-
 - **Permissions**
   Add the following permissions to your collection. These permissions ensure that only registered users can access the collection.
 
@@ -101,71 +97,74 @@ $ npm install
 $ npm run dev
 ```
 
-### Collection Schema
+## 🚀 Appwrite CLI
 
-Here is the collection schema for the Appwrite Collection, so that you can verify that your database and collection are setup properly!
+### Installation
+
+You can follow the simple guide [here](https://appwrite.io/docs/command-line) on the official Appwrite docs to globally install the Appwrite CLI and link it to your project. Then you can conviniently use it to manage, track and even deploy your collections!
+
+### Appwrite.json
+
+Here is my appwrite.json file, that lists the complete structure of my Appwrite backend. You can verify and compare yours to the same to verify the backend has been setup properly.
 
 ```
 {
-    "$id": "MY_COLLECTION_ID",
-    "$createdAt": "2022-10-11T05:45:52.371+00:00",
-    "$updatedAt": "2022-10-13T08:41:12.299+00:00",
-    "$permissions": [
-        "create(\"users\")"
-    ],
-    "databaseId": "MY_DATABASE_ID",
-    "name": "workouts",
-    "enabled": true,
-    "documentSecurity": true,
-    "attributes": [
+    "projectId": "634502e6b603aa796019",
+    "projectName": "workout-buddy",
+    "collections": [
         {
-            "key": "title",
-            "type": "string",
-            "status": "available",
-            "required": true,
-            "array": false,
-            "size": 255,
-            "default": null
-        },
-        {
-            "key": "load",
-            "type": "integer",
-            "status": "available",
-            "required": true,
-            "array": false,
-            "min": 0,
-            "max": 1000,
-            "default": null
-        },
-        {
-            "key": "reps",
-            "type": "integer",
-            "status": "available",
-            "required": false,
-            "array": false,
-            "min": 0,
-            "max": 1000,
-            "default": null
-        },
-        {
-            "key": "link",
-            "type": "string",
-            "status": "available",
-            "required": true,
-            "array": false,
-            "format": "url",
-            "default": null
-        },
-        {
-            "key": "createdAt",
-            "type": "datetime",
-            "status": "available",
-            "required": true,
-            "array": false,
-            "format": "",
-            "default": null
+            "$id": "634503105a8d544ab6e9",
+            "$createdAt": "2022-10-11T05:45:52.371+00:00",
+            "$updatedAt": "2022-10-13T08:41:12.299+00:00",
+            "$permissions": [
+                "create(\"users\")"
+            ],
+            "databaseId": "63450305d0f1b108e5bc",
+            "name": "workouts",
+            "enabled": true,
+            "documentSecurity": true,
+            "attributes": [
+                {
+                    "key": "title",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "load",
+                    "type": "integer",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "min": 0,
+                    "max": 1000,
+                    "default": null
+                },
+                {
+                    "key": "reps",
+                    "type": "integer",
+                    "status": "available",
+                    "required": false,
+                    "array": false,
+                    "min": 0,
+                    "max": 1000,
+                    "default": null
+                },
+                {
+                    "key": "link",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "format": "url",
+                    "default": null
+                }
+            ],
+            "indexes": []
         }
-    ],
-    "indexes": []
+    ]
 }
 ```
