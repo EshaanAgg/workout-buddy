@@ -27,7 +27,7 @@ export const useAccountStore = defineStore("account", {
         const account = await api.getAccount();
         this.account = account;
       } catch (e) {
-        console.log("Error getting Account");
+        console.log("Error getting Account", e);
       }
     },
     login: async function ({ email, password }) {

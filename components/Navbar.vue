@@ -1,7 +1,13 @@
 <script setup>
 import { useAccountStore } from "@/stores/account";
 const accountStore = useAccountStore();
+await accountStore.fetchAccount();
 const user = computed(() => accountStore.account);
+
+const route = useRoute()
+if (route.path.includes("workouts") && !user) {
+  await navigateTo("/login");
+}
 
 const handleLogout = async () => {
   await accountStore.logout();
