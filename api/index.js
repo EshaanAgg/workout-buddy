@@ -1,7 +1,7 @@
 import { Client as Appwrite, Databases, Account } from "appwrite";
 
 // Exporting some most commonly used functions
-const api = {
+let api = {
   sdk: null,
 
   provider: () => {

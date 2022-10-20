@@ -1,11 +1,10 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
 import { useGlobalStore } from "./global";
-import api from "@/api";
+import api from "@/api/index";
 
 export const useAccountStore = defineStore("account", {
   state: () => ({
     account: null,
-    session: null,
   }),
   actions: {
     signup: async function ({ email, password, name }) {
@@ -48,6 +47,7 @@ export const useAccountStore = defineStore("account", {
       try {
         await api.deleteCurrentSession();
         this.account = null;
+        await navigateTo("/login");
       } catch (e) {
         console.log("Error deleting session");
         const globalStore = useGlobalStore();

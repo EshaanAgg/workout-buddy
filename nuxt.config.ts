@@ -7,7 +7,7 @@ export default defineNuxtConfig({
       endpoint: process.env.NUXT_APP_ENDPOINT,
       project: process.env.NUXT_APP_PROJECT,
       workoutCollectionID: process.env.NUXT_APP_COLLECTION_ID,
-      databaseID: process.env.NUXT_APP_DATABASE_ID.toString(),
+      databaseID: process.env.NUXT_APP_DATABASE_ID,
     },
   },
 });
