@@ -5,6 +5,8 @@ const accountStore = useAccountStore();
 const user = computed(() => accountStore.account);
 await accountStore.fetchAccount();
 
+const route = useRoute()
+
 const handleLogout = async () => {
   await accountStore.logout();
   console.log("User logged out");
@@ -18,7 +20,13 @@ const handleLogout = async () => {
       <h1><NuxtLink to="/">Workout Buddy</NuxtLink></h1>
       <div class="links">
         <div v-if="user">
-          <button @click="handleLogout">Logout</button>
+          <div v-if="route.path!='/workouts'">
+            <NuxtLink class="btn" to="/workouts">My Workouts</NuxtLink>
+            <button class="btn" @click="handleLogout">Logout</button>
+          </div>
+          <div v-else>
+            <button class="btn" @click="handleLogout">Logout</button>
+          </div>
         </div>
         <div v-else>
           <NuxtLink class="btn" to="/signup">Sign Up</NuxtLink>
